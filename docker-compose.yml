@@ -19,7 +19,7 @@ services:
     build: ./frontend
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.frontend.rule=Host(ingkwasiattafua.com)"
+      - "traefik.http.routers.frontend.rule=Host(`mauricemakafui.com`)"
       - "traefik.http.services.frontend.loadbalancer.server.port=80"
     networks:
       - web
@@ -28,10 +28,10 @@ services:
     build: ./backend
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.backend.rule=Host(ingkwasiattafua.com) && PathPrefix(/api, /docs)"
+      - "traefik.http.routers.backend.rule=Host(`mauricemakafui.com`) && PathPrefix(`/api`, `/docs`)"
       - "traefik.http.services.backend.loadbalancer.server.port=8000"
     environment:
-      - DATABASE_URL=postgresql://maurice:123admin@postgres/yourdatabase
+      - DATABASE_URL=postgresql://maurice:@postgres/mauricedb
     networks:
       - web
 
@@ -39,8 +39,8 @@ services:
     image: postgres:13
     environment:
       POSTGRES_USER: maurice
-      POSTGRES_PASSWORD: 123admin
-      POSTGRES_DB: projectdb
+      POSTGRES_PASSWORD: 
+      POSTGRES_DB: mauricedb
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
@@ -77,4 +77,4 @@ volumes:
 
 networks:
   web:
-    external: true
+    driver: bridge
