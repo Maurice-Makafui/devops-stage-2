@@ -1,0 +1,7 @@
+2024/07/07 12:40:55 [alert] 174#174: 512 worker_connections are not enough
+2024/07/07 12:40:55 [error] 175#175: *925 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 127.0.0.1, server: localhost-nginx-proxy-manager, request: "GET /favicon.ico HTTP/1.1", upstream: "http://127.0.0.1:80/favicon.ico", host: "localhost", referrer: "http://localhost:8090/"
+2024/07/07 15:49:33 [alert] 174#174: 512 worker_connections are not enough
+2024/07/07 15:49:33 [error] 174#174: *1545 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 127.0.0.1, server: localhost-nginx-proxy-manager, request: "GET /favicon.ico HTTP/1.1", upstream: "http://127.0.0.1:80/favicon.ico", host: "localhost", referrer: "http://localhost:8090/"
+2024/07/07 16:07:49 [warn] 174#174: 512 worker_connections are not enough, reusing connections
+2024/07/07 16:07:49 [alert] 174#174: 512 worker_connections are not enough
+2024/07/07 16:07:49 [error] 174#174: *2382 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 127.0.0.1, server: localhost-nginx-proxy-manager, request: "GET /favicon.ico HTTP/1.1", upstream: "http://127.0.0.1:80/favicon.ico", host: "localhost", referrer: "http://localhost:8090/"

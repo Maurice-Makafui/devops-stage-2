@@ -1,76 +1,67 @@
 version: '3.7'
 
 services:
-  traefik:
-    image: traefik:v2.4
-    command:
-      - "--api.insecure=true"
-      - "--providers.docker=true"
-      - "--entrypoints.web.address=:80"
+  postgresdb:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: mauricedb
+      POSTGRES_USER: maurice
+      POSTGRES_PASSWORD: 123maurice
+      POSTGRES_HOST_AUTH_METHOD: trust
     ports:
-      - "80:80"
-      - "8080:8080"
+      - "5432:5432"
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    networks:
-      - web
-
-  frontend:
-    build: ./frontend
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.frontend.rule=Host(`mauricemakafui.com`)"
-      - "traefik.http.services.frontend.loadbalancer.server.port=80"
+      - postgres_data:/var/lib/postgresql/data
     networks:
       - web
 
   backend:
-    build: ./backend
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.backend.rule=Host(`mauricemakafui.com`) && PathPrefix(`/api`, `/docs`)"
-      - "traefik.http.services.backend.loadbalancer.server.port=8000"
-    environment:
-      - DATABASE_URL=postgresql://maurice:@postgres/mauricedb
+    env_file:
+      - ./backend/.env
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgresdb
     networks:
       - web
 
-  postgres:
-    image: postgres:13
-    environment:
-      POSTGRES_USER: maurice
-      POSTGRES_PASSWORD: 
-      POSTGRES_DB: mauricedb
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
     networks:
       - web
 
   adminer:
     image: adminer
     ports:
-      - 8080:8080
+      - "8080:8080"
     environment:
       ADMINER_DEFAULT_SERVER: postgres
+    depends_on:
+      - postgresdb
     networks:
       - web
 
   proxy-manager:
     image: jc21/nginx-proxy-manager:latest
     ports:
-      - 8090:80
-      - 8443:443
+      - "8090:80"
+      - "81:81"
     environment:
-      DB_MYSQL_HOST: db
-      DB_MYSQL_PORT: 3306
-      DB_MYSQL_USER: npm
-      DB_MYSQL_PASSWORD: npm
-      DB_MYSQL_NAME: npm
-    networks:
-      - web
+      DB_SQLITE_FILE: /data/database.sqlite
     volumes:
       - ./data:/data
       - ./letsencrypt:/etc/letsencrypt
+    networks:
+      - web
 
 volumes:
   postgres_data:
