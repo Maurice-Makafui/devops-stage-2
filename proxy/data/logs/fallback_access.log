@@ -257,3 +257,8 @@
 [10/Jul/2024:18:59:28 +0000] 403 - GET http 3.238.55.16 "/index.php?lang=../../../../../../../../tmp/index1" [Client 117.72.39.242] [Length 150] [Gzip -] "Custom-AsyncHttpClient" "-"
 [10/Jul/2024:19:11:28 +0000] 404 - GET http 3.238.55.16 "/.env" [Client 185.254.196.173] [Length 183] [Gzip 3.21] "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36" "-"
 [10/Jul/2024:19:11:28 +0000] 405 - POST http 3.238.55.16 "/" [Client 185.254.196.173] [Length 556] [Gzip -] "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36" "-"
+[10/Jul/2024:19:23:12 +0000] 200 - GET http 3.238.55.16 "/" [Client 185.224.128.43] [Length 568] [Gzip 1.86] "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36 Edg/90.0.818.46" "-"
+[10/Jul/2024:19:23:50 +0000] 200 - GET http localhost-nginx-proxy-manager "/" [Client 198.235.24.17] [Length 1033] [Gzip -] "Expanse, a Palo Alto Networks company, searches across the global IPv4 space multiple times per day to identify customers&#39; presences on the Internet. If you would like to be excluded from our scans, please send IP addresses/domains to: scaninfo@paloaltonetworks.com" "-"
+[10/Jul/2024:19:24:31 +0000] 400 - GET http 3.238.55.16 "/" [Client 167.94.145.98] [Length 252] [Gzip -] "-" "-"
+[10/Jul/2024:19:24:35 +0000] 400 - GET http 3.238.55.16 "/" [Client 167.94.145.98] [Length 252] [Gzip -] "Mozilla/5.0 (compatible; CensysInspect/1.1; +https://about.censys.io/)" "-"
+[10/Jul/2024:19:24:35 +0000] 400 - - http localhost "-" [Client 167.94.145.98] [Length 154] [Gzip -] "-" "-"

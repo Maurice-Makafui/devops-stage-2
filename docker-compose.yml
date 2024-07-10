@@ -60,7 +60,7 @@ services:
     depends_on:
       - postgres
     environment:
-      ADMINER_DEFAULT_SERVER: db
+      ADMINER_DEFAULT_SERVER: postgres
 
   proxy-manager:
     image: jc21/nginx-proxy-manager:latest
