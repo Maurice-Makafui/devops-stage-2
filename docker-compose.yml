@@ -3,7 +3,7 @@ version: '3.8'
 services:
 
   postgres:
-    image: postgres:13
+    image: postgres:16
     environment:
       POSTGRES_USER: app
       POSTGRES_PASSWORD: 123maurice
@@ -27,7 +27,8 @@ services:
       - POSTGRES_DB=app
       - POSTGRES_USER=app
       - POSTGRES_PASSWORD=123maurice
-      - BACKEND_CORS_ORIGINS=https://maurice123.moo.com,http://localhost,http://localhost:5173,https://localhost,https://localhost:5173
+      - DATABASE_URL=postgresql://app:123maurice@postgres:5432/app
+      - BACKEND_CORS_ORIGINS=https://makafui.chickenkiller.com,http://localhost,http://localhost:5173,https://localhost,https://localhost:5173
       - SECRET_KEY=changethis123
       - FIRST_SUPERUSER=devops@hng.tech
       - FIRST_SUPERUSER_PASSWORD=devops#HNG11
